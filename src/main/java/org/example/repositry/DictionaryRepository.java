@@ -25,10 +25,8 @@ public class DictionaryRepository {
     }
 
     public List<Dictionary> dictionaryList() {
-        List<Dictionary> cardList;
         String sql = "select * from dictionary ";
-        cardList = jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Dictionary.class));
-       return cardList;
+        return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Dictionary.class));
     }
 
     public List<Dictionary> searching(String searchingWord) {

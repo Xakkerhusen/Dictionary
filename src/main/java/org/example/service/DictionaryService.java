@@ -18,7 +18,7 @@ public class DictionaryService {
         Respons respons = dictionaryRepository.addWord(wordUzb, wordEng, description);
         if (wordUzb.trim().isEmpty() || wordEng.trim().isEmpty()) {
             System.out.println("Enter word!!!");
-        }else if (respons.success()) {
+        } else if (respons.success()) {
             System.out.println("Words added 👌👌👌");
         } else {
             System.out.println("Words not added ❌");
@@ -39,8 +39,23 @@ public class DictionaryService {
         Respons delete = dictionaryRepository.delete(deletingId);
         if (delete.success()) {
             System.out.println(delete.massage());
-        }else {
+        } else {
             System.out.println(delete.massage());
+        }
+    }
+
+    public void spelling(int id, String word) {
+        int id2 = 0;
+        for (Dictionary dictionary : dictionaryRepository.dictionaryList()) {
+            if (dictionary.getWordEng().equals(word)) {
+                id2 = dictionary.getId();
+                break;
+            }
+        }
+        if (id2 == id) {
+            System.out.println("Perfect 👌👌👌");
+        } else {
+            System.out.println("Wrong answer ❌❌❌");
         }
     }
 }
